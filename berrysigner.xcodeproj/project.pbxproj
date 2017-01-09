@@ -12,6 +12,14 @@
 		863C05441E205E1A006ECEE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 863C05421E205E1A006ECEE7 /* Main.storyboard */; };
 		863C05461E205E1A006ECEE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 863C05451E205E1A006ECEE7 /* Assets.xcassets */; };
 		863C05491E205E1A006ECEE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 863C05471E205E1A006ECEE7 /* LaunchScreen.storyboard */; };
+		864AE5771E21B922008C1C86 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */; };
+		864AE57D1E21BA42008C1C86 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE57C1E21BA42008C1C86 /* ProjectCreateViewController.swift */; };
+		864AE57F1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE57E1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift */; };
+		864AE5811E21C2FE008C1C86 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5801E21C2FE008C1C86 /* Project.swift */; };
+		864AE5831E22A843008C1C86 /* ProjectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5821E22A843008C1C86 /* ProjectData.swift */; };
+		864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5841E22A852008C1C86 /* ProjectPage.swift */; };
+		864AE5871E22A9A9008C1C86 /* ProjectPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5861E22A9A9008C1C86 /* ProjectPageData.swift */; };
+		864AE5891E22A9B3008C1C86 /* ProjectPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,15 @@
 		863C05451E205E1A006ECEE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		863C05481E205E1A006ECEE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		863C054A1E205E1A006ECEE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		864AE5721E212D15008C1C86 /* berrysigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = berrysigner.entitlements; sourceTree = "<group>"; };
+		864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
+		864AE57C1E21BA42008C1C86 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
+		864AE57E1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsCollectionViewController.swift; sourceTree = "<group>"; };
+		864AE5801E21C2FE008C1C86 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		864AE5821E22A843008C1C86 /* ProjectData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectData.swift; sourceTree = "<group>"; };
+		864AE5841E22A852008C1C86 /* ProjectPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPage.swift; sourceTree = "<group>"; };
+		864AE5861E22A9A9008C1C86 /* ProjectPageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPageData.swift; sourceTree = "<group>"; };
+		864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPageImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +57,7 @@
 			children = (
 				863C053D1E205E1A006ECEE7 /* berrysigner */,
 				863C053C1E205E1A006ECEE7 /* Products */,
+				864AE5731E212D26008C1C86 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +72,30 @@
 		863C053D1E205E1A006ECEE7 /* berrysigner */ = {
 			isa = PBXGroup;
 			children = (
+				864AE5721E212D15008C1C86 /* berrysigner.entitlements */,
 				863C053E1E205E1A006ECEE7 /* AppDelegate.swift */,
 				863C05401E205E1A006ECEE7 /* ViewController.swift */,
+				864AE57C1E21BA42008C1C86 /* ProjectCreateViewController.swift */,
+				864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */,
+				864AE57E1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift */,
 				863C05421E205E1A006ECEE7 /* Main.storyboard */,
 				863C05451E205E1A006ECEE7 /* Assets.xcassets */,
 				863C05471E205E1A006ECEE7 /* LaunchScreen.storyboard */,
 				863C054A1E205E1A006ECEE7 /* Info.plist */,
+				864AE5801E21C2FE008C1C86 /* Project.swift */,
+				864AE5821E22A843008C1C86 /* ProjectData.swift */,
+				864AE5841E22A852008C1C86 /* ProjectPage.swift */,
+				864AE5861E22A9A9008C1C86 /* ProjectPageData.swift */,
+				864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */,
 			);
 			path = berrysigner;
+			sourceTree = "<group>";
+		};
+		864AE5731E212D26008C1C86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +132,14 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K4GRY7UP44;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -139,6 +181,14 @@
 			files = (
 				863C05411E205E1A006ECEE7 /* ViewController.swift in Sources */,
 				863C053F1E205E1A006ECEE7 /* AppDelegate.swift in Sources */,
+				864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */,
+				864AE5811E21C2FE008C1C86 /* Project.swift in Sources */,
+				864AE57D1E21BA42008C1C86 /* ProjectCreateViewController.swift in Sources */,
+				864AE5771E21B922008C1C86 /* ProjectsTableViewController.swift in Sources */,
+				864AE57F1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift in Sources */,
+				864AE5831E22A843008C1C86 /* ProjectData.swift in Sources */,
+				864AE5891E22A9B3008C1C86 /* ProjectPageImage.swift in Sources */,
+				864AE5871E22A9A9008C1C86 /* ProjectPageData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = berrysigner/berrysigner.entitlements;
 				DEVELOPMENT_TEAM = K4GRY7UP44;
 				INFOPLIST_FILE = berrysigner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -275,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = berrysigner/berrysigner.entitlements;
 				DEVELOPMENT_TEAM = K4GRY7UP44;
 				INFOPLIST_FILE = berrysigner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -304,6 +356,7 @@
 				863C054F1E205E1A006ECEE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
