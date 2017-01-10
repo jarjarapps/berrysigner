@@ -13,7 +13,6 @@
 		863C05461E205E1A006ECEE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 863C05451E205E1A006ECEE7 /* Assets.xcassets */; };
 		863C05491E205E1A006ECEE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 863C05471E205E1A006ECEE7 /* LaunchScreen.storyboard */; };
 		864AE5771E21B922008C1C86 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */; };
-		864AE57D1E21BA42008C1C86 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE57C1E21BA42008C1C86 /* ProjectCreateViewController.swift */; };
 		864AE57F1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE57E1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift */; };
 		864AE5811E21C2FE008C1C86 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5801E21C2FE008C1C86 /* Project.swift */; };
 		864AE5831E22A843008C1C86 /* ProjectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5821E22A843008C1C86 /* ProjectData.swift */; };
@@ -32,7 +31,6 @@
 		863C054A1E205E1A006ECEE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		864AE5721E212D15008C1C86 /* berrysigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = berrysigner.entitlements; sourceTree = "<group>"; };
 		864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
-		864AE57C1E21BA42008C1C86 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
 		864AE57E1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsCollectionViewController.swift; sourceTree = "<group>"; };
 		864AE5801E21C2FE008C1C86 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		864AE5821E22A843008C1C86 /* ProjectData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectData.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 				864AE5721E212D15008C1C86 /* berrysigner.entitlements */,
 				863C053E1E205E1A006ECEE7 /* AppDelegate.swift */,
 				863C05401E205E1A006ECEE7 /* ViewController.swift */,
-				864AE57C1E21BA42008C1C86 /* ProjectCreateViewController.swift */,
 				864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */,
 				864AE57E1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift */,
 				863C05421E205E1A006ECEE7 /* Main.storyboard */,
@@ -183,7 +180,6 @@
 				863C053F1E205E1A006ECEE7 /* AppDelegate.swift in Sources */,
 				864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */,
 				864AE5811E21C2FE008C1C86 /* Project.swift in Sources */,
-				864AE57D1E21BA42008C1C86 /* ProjectCreateViewController.swift in Sources */,
 				864AE5771E21B922008C1C86 /* ProjectsTableViewController.swift in Sources */,
 				864AE57F1E21BEF0008C1C86 /* ProjectDetailsCollectionViewController.swift in Sources */,
 				864AE5831E22A843008C1C86 /* ProjectData.swift in Sources */,

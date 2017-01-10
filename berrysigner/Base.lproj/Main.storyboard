@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" id="1Do-AJ-JOY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" id="1Do-AJ-JOY">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Do-AJ-JOY" id="LtE-Kx-pUt">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -38,7 +38,7 @@
                     <navigationItem key="navigationItem" id="6Nh-1x-TFD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="07a-4O-Ugl">
                             <connections>
-                                <segue destination="roB-WB-ZTd" kind="show" id="RRm-HS-J5J"/>
+                                <action selector="createProject:" destination="hFA-dS-gbP" id="7Xa-Zj-9h8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -46,50 +46,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lP2-OD-c0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="956" y="102.99850074962519"/>
-        </scene>
-        <!--Create Project-->
-        <scene sceneID="JkZ-0A-XMP">
-            <objects>
-                <viewController id="roB-WB-ZTd" customClass="ProjectCreateViewController" customModule="berrysigner" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DWi-6f-ntH"/>
-                        <viewControllerLayoutGuide type="bottom" id="wtF-zB-ev5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0sk-ag-813">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oUt-mg-2t0">
-                                <rect key="frame" x="16" y="125" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VN7-TM-f6b">
-                                <rect key="frame" x="16" y="96" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Create Project" id="EnN-u9-Cqe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="RmP-ix-P6r">
-                            <connections>
-                                <action selector="createProject:" destination="roB-WB-ZTd" id="QY2-ji-xhf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="name" destination="oUt-mg-2t0" id="rlt-ZY-8Hk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p4a-Ll-afL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="956" y="-600"/>
         </scene>
         <!--Project-->
         <scene sceneID="YsQ-S7-O7y">
