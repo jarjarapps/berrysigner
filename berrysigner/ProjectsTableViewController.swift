@@ -12,9 +12,28 @@ class ProjectsTableViewController: UITableViewController {
     
     private var documentsUrl: URL?
     private var projectUrls : [URL] = []
-    
+    private var activityView: UIView!
+    private var activityIndicatorView: UIActivityIndicatorView!
+    private var activityLabel: UILabel!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
+        activityView.center = CGPoint(x: self.view.bounds.size.width  / 2, y:self.view.bounds.size.height / 2)
+        activityView.backgroundColor = UIColor.white
+        activityView.layer.cornerRadius = 10
+        
+        activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        activityIndicatorView.color = UIColor.black
+        activityIndicatorView.hidesWhenStopped = false
+        
+        
+        activityLabel = UILabel(frame: CGRect(x: 60, y: 0, width: 200, height: 50))
+        activityLabel.text = "Adding Project..."
+        
+        activityView.addSubview(activityIndicatorView)
+        activityView.addSubview(activityLabel)
         
         self.documentsUrl = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last! as URL
     }
@@ -33,12 +52,14 @@ class ProjectsTableViewController: UITableViewController {
     }
     
     @IBAction func createProject(_ sender: Any) {
+        self.view.addSubview(activityView)
         let fileName = "\(UUID().uuidString).berryproj"
         let documentUrl = documentsUrl?.appendingPathComponent(fileName)
         let project = Project(fileURL: documentUrl!, name: "New Project")
         project.save(to: documentUrl!,
                      for: UIDocumentSaveOperation.forCreating) { (Bool) in
                         self.loadProjects()
+                        self.activityView.removeFromSuperview()
         }
         
     }

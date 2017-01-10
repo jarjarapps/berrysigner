@@ -28,11 +28,11 @@ class Project : UIDocument{
         dataFileWrapper.preferredFilename = Project.dataFileName
         
         self.documentWrapper?.addFileWrapper(dataFileWrapper)
-        return self.documentWrapper
+        return self.documentWrapper!
     }
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
-        self.documentWrapper = contents as! FileWrapper
+        self.documentWrapper = contents as? FileWrapper
         let dataFileWrapper = self.documentWrapper?.fileWrappers?[Project.dataFileName]
         self.name = String(data: (dataFileWrapper?.regularFileContents)!, encoding: String.Encoding.utf8)
     }
