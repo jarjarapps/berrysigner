@@ -18,22 +18,8 @@ class ProjectsTableViewController: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        createActivityIndicator()
         
-        activityView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
-        activityView.center = CGPoint(x: self.view.bounds.size.width  / 2, y:self.view.bounds.size.height / 2)
-        activityView.backgroundColor = UIColor.white
-        activityView.layer.cornerRadius = 10
-        
-        activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        activityIndicatorView.color = UIColor.black
-        activityIndicatorView.hidesWhenStopped = false
-        
-        
-        activityLabel = UILabel(frame: CGRect(x: 60, y: 0, width: 200, height: 50))
-        activityLabel.text = "Adding Project..."
-        
-        activityView.addSubview(activityIndicatorView)
-        activityView.addSubview(activityLabel)
         
         self.documentsUrl = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last! as URL
     }
@@ -57,11 +43,23 @@ class ProjectsTableViewController: UITableViewController {
         let documentUrl = documentsUrl?.appendingPathComponent(fileName)
         let project = Project(fileURL: documentUrl!, name: "New Project")
         project.save(to: documentUrl!,
-                     for: UIDocumentSaveOperation.forCreating) { (Bool) in
-                        self.loadProjects()
+                     for: UIDocumentSaveOperation.forCreating) { (success) in
+                        if(success){
+                            self.performSegue(withIdentifier: "showProject", sender: project)
+                        }
                         self.activityView.removeFromSuperview()
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! ProjectDetailsCollectionViewController
+        
+        if let tableViewCell = sender as? UITableViewCell{
+            destination.projectUrl = self.projectUrls[(self.tableView.indexPath(for: tableViewCell)?.row)!]
+        }else if let project = sender as? Project{
+            destination.projectUrl = project.fileURL
+        }
     }
     
     func loadProjects(){
@@ -73,7 +71,7 @@ class ProjectsTableViewController: UITableViewController {
         }
     }
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath)
         let url = self.projectUrls[indexPath.row]
         let project = Project(fileURL: url, name:nil)
@@ -84,6 +82,23 @@ class ProjectsTableViewController: UITableViewController {
         return cell
      }
     
+    private func createActivityIndicator(){
+        self.activityView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
+        self.activityView.center = CGPoint(x: self.view.bounds.size.width  / 2, y:self.view.bounds.size.height / 2)
+        self.activityView.backgroundColor = UIColor.white
+        self.activityView.layer.cornerRadius = 10
+        
+        self.activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        self.activityIndicatorView.color = UIColor.black
+        self.activityIndicatorView.hidesWhenStopped = false
+        
+        
+        self.activityLabel = UILabel(frame: CGRect(x: 60, y: 0, width: 200, height: 50))
+        self.activityLabel.text = "Adding Project..."
+        
+        self.activityView.addSubview(self.activityIndicatorView)
+        self.activityView.addSubview(self.activityLabel)
+    }
     
     /*
      // Override to support conditional editing of the table view.

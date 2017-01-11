@@ -12,16 +12,20 @@ private let reuseIdentifier = "Cell"
 
 class ProjectDetailsCollectionViewController: UICollectionViewController {
 
+    var projectUrl: URL!
+    var project: Project?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.project = Project(fileURL: self.projectUrl, name:nil)
+        self.project?.open { (success) in
+            self.navigationItem.title = self.project?.name
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
