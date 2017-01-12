@@ -10,14 +10,17 @@ import UIKit
 
 class Project : UIDocument{
     private static let dataFileName: String  = "data.file"
+    private static let pagesFileName: String = "pages.file"
     
     private var documentWrapper: FileWrapper?
     
     var name: String?
+    var pagesUrl: URL!
     
     init(fileURL url: URL, name:String?) {
         self.name = name
         super.init(fileURL: url)
+        self.pagesUrl = self.fileURL.appendingPathComponent(Project.pagesFileName)
     }
     
     override func contents(forType typeName: String) throws -> Any {
@@ -27,7 +30,11 @@ class Project : UIDocument{
         let dataFileWrapper = FileWrapper(regularFileWithContents: dataContent!)
         dataFileWrapper.preferredFilename = Project.dataFileName
         
+        let pagesWrapper = FileWrapper(directoryWithFileWrappers: [:])
+        pagesWrapper.preferredFilename = Project.pagesFileName
+        
         self.documentWrapper?.addFileWrapper(dataFileWrapper)
+        self.documentWrapper?.addFileWrapper(pagesWrapper)
         return self.documentWrapper!
     }
     

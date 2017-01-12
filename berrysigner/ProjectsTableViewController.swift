@@ -53,7 +53,7 @@ class ProjectsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! ProjectDetailsCollectionViewController
+        let destination = segue.destination as! ProjectDetailsTableViewController
         
         if let tableViewCell = sender as? UITableViewCell{
             destination.projectUrl = self.projectUrls[(self.tableView.indexPath(for: tableViewCell)?.row)!]
