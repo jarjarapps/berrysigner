@@ -15,6 +15,7 @@
 		864AE5811E21C2FE008C1C86 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5801E21C2FE008C1C86 /* Project.swift */; };
 		864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5841E22A852008C1C86 /* ProjectPage.swift */; };
 		864AE5891E22A9B3008C1C86 /* ProjectPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */; };
+		86C067471E2716890068BD2A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C067461E2716890068BD2A /* PageViewController.swift */; };
 		86CFEC301E2711900072262E /* ProjectDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		864AE5801E21C2FE008C1C86 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		864AE5841E22A852008C1C86 /* ProjectPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPage.swift; sourceTree = "<group>"; };
 		864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPageImage.swift; sourceTree = "<group>"; };
+		86C067461E2716890068BD2A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 			children = (
 				86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */,
 				864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */,
+				86C067461E2716890068BD2A /* PageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				863C053F1E205E1A006ECEE7 /* AppDelegate.swift in Sources */,
+				86C067471E2716890068BD2A /* PageViewController.swift in Sources */,
 				864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */,
 				864AE5811E21C2FE008C1C86 /* Project.swift in Sources */,
 				864AE5771E21B922008C1C86 /* ProjectsTableViewController.swift in Sources */,
