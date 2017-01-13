@@ -13,6 +13,7 @@ class ProjectDetailsTableViewController: UITableViewController {
     var projectUrl: URL!
     var project: Project?
     var pageUrls: [URL] = []
+    private var pageIndexPathToDelete: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,26 +74,57 @@ class ProjectDetailsTableViewController: UITableViewController {
             destination.pageUrl = page.fileURL
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
+    
+    func confirmDelete(){
+        let alert = UIAlertController(title: "Delete Page",
+                                      message: "Are you sure you want to permanently delete a page?",
+                                      preferredStyle: .alert)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeletePage)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeletePage)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        // Support display in iPad
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect(x:1.0 , y:1.0, width:self.view.bounds.size.width / 2.0, height:self.view.bounds.size.height / 2.0)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeletePage(alertAction: UIAlertAction!) -> Void {
+        do{
+            if let indexPath = self.pageIndexPathToDelete {
+                tableView.beginUpdates()
+                
+                try FileManager.default.removeItem(at: self.pageUrls[indexPath.item])
+                self.pageUrls.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                self.pageIndexPathToDelete = nil
+                
+                tableView.endUpdates()
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func cancelDeletePage(alertAction: UIAlertAction!) {
+        self.pageIndexPathToDelete = nil
+    }
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            self.pageIndexPathToDelete = indexPath
+            self.confirmDelete()
+        }
     }
-    */
 
     /*
     // Override to support rearranging the table view.
