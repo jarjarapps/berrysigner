@@ -9,7 +9,8 @@
 import UIKit
 
 class PageViewController: UIViewController {
-
+    var pageUrl: URL!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

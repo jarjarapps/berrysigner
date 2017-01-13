@@ -15,9 +15,11 @@ class ProjectsTableViewController: UITableViewController {
     private var activityView: UIView!
     private var activityIndicatorView: UIActivityIndicatorView!
     private var activityLabel: UILabel!
-   
+    private var projectIndexPathToDelete: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.allowsMultipleSelectionDuringEditing = false
         createActivityIndicator()
         
         
@@ -49,7 +51,6 @@ class ProjectsTableViewController: UITableViewController {
                         }
                         self.activityView.removeFromSuperview()
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,7 +81,7 @@ class ProjectsTableViewController: UITableViewController {
         }
         
         return cell
-     }
+    }
     
     private func createActivityIndicator(){
         self.activityView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
@@ -100,25 +101,60 @@ class ProjectsTableViewController: UITableViewController {
         self.activityView.addSubview(self.activityLabel)
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+    
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            self.projectIndexPathToDelete = indexPath
+            self.confirmDelete()
+        }
+    }
+    
+    func confirmDelete(){
+        let alert = UIAlertController(title: "Delete Project",
+                                      message: "Are you sure you want to permanently delete project?",
+                                      preferredStyle: .alert)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeleteProject)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeleteProject)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        // Support display in iPad
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect(x:1.0 , y:1.0, width:self.view.bounds.size.width / 2.0, height:self.view.bounds.size.height / 2.0)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeleteProject(alertAction: UIAlertAction!) -> Void {
+        do{
+            if let indexPath = self.projectIndexPathToDelete {
+                tableView.beginUpdates()
+                
+                try FileManager.default.removeItem(at: self.projectUrls[indexPath.item])
+                self.projectUrls.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                self.projectIndexPathToDelete = nil
+                
+                tableView.endUpdates()
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func cancelDeleteProject(alertAction: UIAlertAction!) {
+        self.projectIndexPathToDelete = nil
+    }
+    
     
     /*
      // Override to support rearranging the table view.

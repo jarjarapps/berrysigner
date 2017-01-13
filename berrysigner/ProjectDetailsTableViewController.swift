@@ -28,7 +28,10 @@ class ProjectDetailsTableViewController: UITableViewController {
         let page = ProjectPage(fileURL: documentUrl!, name: "New Page")
         page.save(to: documentUrl!,
                   for: UIDocumentSaveOperation.forCreating) { (success) in
-                    print("page created")
+                    if(success){
+                        self.performSegue(withIdentifier: "showPage", sender: page)
+                    }
+                    
         }
     }
     
@@ -59,6 +62,16 @@ class ProjectDetailsTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! PageViewController
+        
+        if let tableViewCell = sender as? UITableViewCell{
+            destination.pageUrl = self.pageUrls[(self.tableView.indexPath(for: tableViewCell)?.row)!]
+        }else if let page = sender as? ProjectPage{
+            destination.pageUrl = page.fileURL
+        }
     }
 
     /*
