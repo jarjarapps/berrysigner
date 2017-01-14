@@ -43,13 +43,19 @@ class ProjectsTableViewController: UITableViewController {
         self.view.addSubview(activityView)
         let fileName = "\(UUID().uuidString).berryproj"
         let documentUrl = documentsUrl?.appendingPathComponent(fileName)
-        let project = Project(fileURL: documentUrl!, name: "New Project")
-        project.save(to: documentUrl!,
-                     for: UIDocumentSaveOperation.forCreating) { (success) in
-                        if(success){
-                            self.performSegue(withIdentifier: "showProject", sender: project)
-                        }
+        let project = Project(fileURL: documentUrl!)
+        let projectData = ProjectData(fileURL: project.dataUrl!)
+        projectData.name = "New Project"
+        
+        project.save(to: documentUrl!, for: UIDocumentSaveOperation.forCreating) { (projectCreated) in
+            if(projectCreated){
+                projectData.save(to: projectData.fileURL, for: UIDocumentSaveOperation.forCreating, completionHandler: { (dataCreated) in
+                    if(dataCreated){
+                        self.performSegue(withIdentifier: "showProject", sender: project)
                         self.activityView.removeFromSuperview()
+                    }
+                })
+            }
         }
     }
     
@@ -75,11 +81,11 @@ class ProjectsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath)
         let url = self.projectUrls[indexPath.row]
-        let project = Project(fileURL: url, name:nil)
-        project.open { (success) in
-            cell.textLabel?.text =  project.name
+        let project = Project(fileURL: url)
+        let projectData = ProjectData(fileURL: project.dataUrl!)
+        projectData.open { (success) in
+            cell.textLabel?.text =  projectData.name
         }
-        
         return cell
     }
     

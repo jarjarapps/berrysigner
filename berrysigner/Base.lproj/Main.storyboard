@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cbf-Q1-Aqd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cbf-Q1-Aqd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,11 +76,18 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="IBO-JG-ltY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bBk-BC-Z7f">
-                            <connections>
-                                <action selector="addPage:" destination="MUI-ZO-hYd" id="ycX-sP-hO3"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="bBk-BC-Z7f">
+                                <connections>
+                                    <action selector="addPage:" destination="MUI-ZO-hYd" id="ycX-sP-hO3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="Hgv-j5-S9S">
+                                <connections>
+                                    <action selector="editName:" destination="MUI-ZO-hYd" id="ehZ-U3-mkb"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -105,7 +113,11 @@
                         <barButtonItem systemItem="action" id="acY-tv-dL4"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="WOF-sW-3VB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eHO-9c-WLH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eHO-9c-WLH">
+                            <connections>
+                                <action selector="editName:" destination="EIt-aj-DQZ" id="FhN-47-siH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22O-tz-hAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
