@@ -12,6 +12,16 @@ class PageViewController: UIViewController {
     var pageUrl: URL!
     var pageData: ProjectPageData!
     
+    var lastPoint = CGPoint.zero
+    var red: CGFloat = 0.0
+    var green: CGFloat = 0.0
+    var blue: CGFloat = 0.0
+    var brushWidth: CGFloat = 10.0
+    var opacity: CGFloat = 1.0
+    var swiped = false
+    
+    @IBOutlet weak var imageView : UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,6 +46,52 @@ class PageViewController: UIViewController {
         self.pageData?.open { (success) in
             self.navigationItem.title = self.pageData?.name
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        swiped = false
+        if let touch = touches.first {
+            lastPoint = touch.location(in: self.view)
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 6
+        swiped = true
+        if let touch = touches.first {
+            let currentPoint = touch.location(in: view)
+            drawLineFrom(fromPoint: lastPoint, toPoint: currentPoint)
+            
+            // 7
+            lastPoint = currentPoint
+        }
+    }
+    
+    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+        
+        //1
+        UIGraphicsBeginImageContext(view.frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        imageView.image?.draw(in : CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+        
+        // 2
+        context?.move(to: fromPoint)
+        context?.addLine(to: toPoint)
+        
+        // 3
+        context?.setLineCap(CGLineCap.round)
+        context?.setLineWidth(brushWidth)
+        context?.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+        context?.setBlendMode(CGBlendMode.normal)
+        
+        // 4
+        context?.strokePath()
+        
+        // 5
+        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        imageView.alpha = opacity
+        UIGraphicsEndImageContext()
+        
     }
     
     @IBAction func editName(_ sender: Any) {
