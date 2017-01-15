@@ -12,17 +12,14 @@ class ProjectsTableViewController: UITableViewController {
     
     private var documentsUrl: URL?
     private var projectUrls : [URL] = []
-    private var activityView: UIView!
-    private var activityIndicatorView: UIActivityIndicatorView!
-    private var activityLabel: UILabel!
     private var projectIndexPathToDelete: IndexPath?
+    private var activityAlert: ActivityAlertViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelectionDuringEditing = false
-        createActivityIndicator()
-        
-        
+        self.activityAlert = ActivityAlertViewController(forController: self)
+
         self.documentsUrl = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last! as URL
     }
     
@@ -32,7 +29,6 @@ class ProjectsTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,7 +36,7 @@ class ProjectsTableViewController: UITableViewController {
     }
     
     @IBAction func createProject(_ sender: Any) {
-        self.view.addSubview(activityView)
+        self.activityAlert?.show(withTitle: "Creating Project...")
         let fileName = "\(UUID().uuidString).berryproj"
         let documentUrl = documentsUrl?.appendingPathComponent(fileName)
         let project = Project(fileURL: documentUrl!)
@@ -51,8 +47,8 @@ class ProjectsTableViewController: UITableViewController {
             if(projectCreated){
                 projectData.save(to: projectData.fileURL, for: UIDocumentSaveOperation.forCreating, completionHandler: { (dataCreated) in
                     if(dataCreated){
+                        self.activityAlert?.dismiss()
                         self.performSegue(withIdentifier: "showProject", sender: project)
-                        self.activityView.removeFromSuperview()
                     }
                 })
             }
@@ -90,21 +86,38 @@ class ProjectsTableViewController: UITableViewController {
     }
     
     private func createActivityIndicator(){
-        self.activityView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
-        self.activityView.center = CGPoint(x: self.view.bounds.size.width  / 2, y:self.view.bounds.size.height / 2)
-        self.activityView.backgroundColor = UIColor.white
-        self.activityView.layer.cornerRadius = 10
+        self.view.addSubview(view)
+//        let alert = UIAlertController(title: "Adding Project...",
+//                                        message: nil,
+//                                        preferredStyle: .alert)
+//        let viewBack:UIView = UIView(frame: CGRect(x:83,y:0,width:100,height:100))
+//        
+//        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:50, y:10, width:37, height:37))
+//        loadingIndicator.center = viewBack.center
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//        loadingIndicator.startAnimating();
+//        viewBack.addSubview(loadingIndicator)
+//        viewBack.center = self.view.center
+////        alert.setValue(viewBack, forKey: "accessoryView")
+//        loadingIndicator.startAnimating()
+//       self.present(alert, animated: true, completion: nil)
         
-        self.activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        self.activityIndicatorView.color = UIColor.black
-        self.activityIndicatorView.hidesWhenStopped = false
         
         
-        self.activityLabel = UILabel(frame: CGRect(x: 60, y: 0, width: 200, height: 50))
-        self.activityLabel.text = "Adding Project..."
-        
-        self.activityView.addSubview(self.activityIndicatorView)
-        self.activityView.addSubview(self.activityLabel)
+//        self.activityView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 50))
+//        self.activityView.center = self.tableView.center
+//        self.activityView.backgroundColor = UIColor.white
+//        self.activityView.layer.cornerRadius = 10
+//        
+//        self.activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        self.activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//        self.activityIndicatorView.startAnimating()
+//        self.activityLabel = UILabel(frame: CGRect(x: 60, y: 0, width: 200, height: 50))
+//        self.activityLabel.text = "Adding Project..."
+//        
+//        self.activityView.addSubview(self.activityIndicatorView)
+//        self.activityView.addSubview(self.activityLabel)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -130,7 +143,6 @@ class ProjectsTableViewController: UITableViewController {
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
         
-        // Support display in iPad
         alert.popoverPresentationController?.sourceView = self.view
         alert.popoverPresentationController?.sourceRect = CGRect(x:1.0 , y:1.0, width:self.view.bounds.size.width / 2.0, height:self.view.bounds.size.height / 2.0)
         
@@ -157,31 +169,4 @@ class ProjectsTableViewController: UITableViewController {
     func cancelDeleteProject(alertAction: UIAlertAction!) {
         self.projectIndexPathToDelete = nil
     }
-    
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
