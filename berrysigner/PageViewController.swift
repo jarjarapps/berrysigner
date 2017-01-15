@@ -11,6 +11,7 @@ import UIKit
 class PageViewController: UIViewController {
     var pageUrl: URL!
     var pageData: ProjectPageData!
+    var pageImage: ProjectPageImage!
     
     var lastPoint = CGPoint.zero
     var red: CGFloat = 0.0
@@ -43,9 +44,14 @@ class PageViewController: UIViewController {
     func loadPage(){
         let page = ProjectPage(fileURL: self.pageUrl)
         self.pageData = ProjectPageData(fileURL: page.dataUrl)
+        self.pageImage = ProjectPageImage(fileURL: page.imageUrl)
         self.pageData?.open { (success) in
             self.navigationItem.title = self.pageData?.name
         }
+        self.pageImage?.open(completionHandler: { (success) in
+            self.imageView.image = self.pageImage.image
+        })
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -55,14 +61,16 @@ class PageViewController: UIViewController {
         }
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.pageImage.image = self.imageView.image
+        self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+    }
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 6
         swiped = true
         if let touch = touches.first {
             let currentPoint = touch.location(in: view)
             drawLineFrom(fromPoint: lastPoint, toPoint: currentPoint)
-            
-            // 7
             lastPoint = currentPoint
         }
     }
