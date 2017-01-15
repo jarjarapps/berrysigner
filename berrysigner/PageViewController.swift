@@ -77,10 +77,10 @@ class PageViewController: UIViewController {
     
     func draw(fromPoint: CGPoint, toPoint: CGPoint) {
         
-        UIGraphicsBeginImageContext(view.frame.size)
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0)
         let context = UIGraphicsGetCurrentContext()
         imageView.image?.draw(in : CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-
+        
         context?.move(to: fromPoint)
         context?.addLine(to: toPoint)
         
