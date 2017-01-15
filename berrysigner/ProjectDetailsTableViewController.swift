@@ -14,11 +14,12 @@ class ProjectDetailsTableViewController: UITableViewController {
     var projectData: ProjectData?
     
     private var pageUrls: [URL] = []
-    private var nameTextField: UITextField?
     private var pageIndexPathToDelete: IndexPath?
+    private var activityAlert: ActivityAlertViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityAlert = ActivityAlertViewController(forController: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +27,7 @@ class ProjectDetailsTableViewController: UITableViewController {
     }
     
     @IBAction func addPage(_ sender: Any) {
+        self.activityAlert?.show(withTitle: "Creating Page...")
         let project = Project(fileURL: self.projectUrl)
         let fileName = "\(UUID().uuidString).page"
         let documentUrl = project.pagesUrl.appendingPathComponent(fileName)
@@ -37,12 +39,13 @@ class ProjectDetailsTableViewController: UITableViewController {
             if(pageCreated){
                 pageData.save(to: pageData.fileURL, for: UIDocumentSaveOperation.forCreating, completionHandler: { (dataCreated) in
                     if(dataCreated){
+                        self.activityAlert?.dismiss()
                         self.performSegue(withIdentifier: "showPage", sender: page)
                     }
                 })
             }
         }
-
+        
     }
     
     func loadPages(){
@@ -91,12 +94,13 @@ class ProjectDetailsTableViewController: UITableViewController {
                                       preferredStyle: .alert)
         
         let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: self.handleDeletePage)
-        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancelDeletePage)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action: UIAlertAction) in
+            self.pageIndexPathToDelete = nil
+        })
         
         alert.addAction(DeleteAction)
         alert.addAction(CancelAction)
         
-        // Support display in iPad
         alert.popoverPresentationController?.sourceView = self.view
         alert.popoverPresentationController?.sourceRect = CGRect(x:1.0 , y:1.0, width:self.view.bounds.size.width / 2.0, height:self.view.bounds.size.height / 2.0)
         
@@ -120,10 +124,6 @@ class ProjectDetailsTableViewController: UITableViewController {
         }
     }
     
-    func cancelDeletePage(alertAction: UIAlertAction!) {
-        self.pageIndexPathToDelete = nil
-    }
-    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -141,13 +141,19 @@ class ProjectDetailsTableViewController: UITableViewController {
                                       message: nil,
                                       preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: self.handleSaveEdit)
+        var nameTextField: UITextField?
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {(alert:UIAlertAction) in
+            self.projectData?.name = nameTextField?.text
+            self.navigationItem.title = self.projectData?.name
+            self.projectData?.updateChangeCount(UIDocumentChangeKind.done)
+        })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         alert.addTextField { (field) in
             field.text = self.projectData?.name
-            self.nameTextField = field
+            nameTextField = field
         }
         
         // Support display in iPad
@@ -156,37 +162,4 @@ class ProjectDetailsTableViewController: UITableViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-    
-    func handleSaveEdit(alertAction: UIAlertAction!) -> Void {
-        self.projectData?.name = self.nameTextField?.text
-        self.navigationItem.title = self.projectData?.name
-        projectData?.updateChangeCount(UIDocumentChangeKind.done)
-    }
-    
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
