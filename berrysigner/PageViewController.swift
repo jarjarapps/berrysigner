@@ -21,10 +21,15 @@ class PageViewController: UIViewController {
     var opacity: CGFloat = 1.0
     var swiped = false
     
+    private var imageStatus: ImageStatusController?
+    
     @IBOutlet weak var imageView : UIImageView!
+    @IBOutlet weak var undoButton: UIBarButtonItem!
+    @IBOutlet weak var redoButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageStatus = ImageStatusController()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,8 +56,8 @@ class PageViewController: UIViewController {
         self.pageImage?.open(completionHandler: { (success) in
             self.imageView.image = self.pageImage.image
         })
-        
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         swiped = false
@@ -64,6 +69,10 @@ class PageViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.pageImage.image = self.imageView.image
         self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+        
+        self.imageStatus?.save(image: self.pageImage.image!)
+        self.redoButton.isEnabled = (self.imageStatus?.isRedoAvailable)!
+        self.undoButton.isEnabled = (self.imageStatus?.isUndoAvailable)!
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -97,6 +106,20 @@ class PageViewController: UIViewController {
         
     }
     
+    @IBAction func undo(_ sender: Any) {
+        self.imageView.image = self.imageStatus?.undo()
+        self.pageImage.image = self.imageView.image
+        self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+        self.redoButton.isEnabled = (self.imageStatus?.isRedoAvailable)!
+        self.undoButton.isEnabled = (self.imageStatus?.isUndoAvailable)!
+    }
+    @IBAction func redo(_ sender: Any) {
+        self.imageView.image = self.imageStatus?.redo()
+        self.pageImage.image = self.imageView.image
+        self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+        self.redoButton.isEnabled = (self.imageStatus?.isRedoAvailable)!
+        self.undoButton.isEnabled = (self.imageStatus?.isUndoAvailable)!
+    }
     @IBAction func editName(_ sender: Any) {
         let alert = UIAlertController(title: "Edit Page Name",
                                       message: nil,
