@@ -20,6 +20,7 @@
 		86C067471E2716890068BD2A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C067461E2716890068BD2A /* PageViewController.swift */; };
 		86CDE9A31E286D8000A2830D /* ProjectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDE9A21E286D8000A2830D /* ProjectData.swift */; };
 		86CFEC301E2711900072262E /* ProjectDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */; };
+		86DD86761E2DB875002362FD /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DD86751E2DB875002362FD /* pencil.png */; };
 		86F129B31E2AA32500387FCB /* ActivityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F129B11E2AA32500387FCB /* ActivityAlertViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		86C067461E2716890068BD2A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		86CDE9A21E286D8000A2830D /* ProjectData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectData.swift; sourceTree = "<group>"; };
 		86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsTableViewController.swift; sourceTree = "<group>"; };
+		86DD86751E2DB875002362FD /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		86F129B11E2AA32500387FCB /* ActivityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityAlertViewController.swift; path = ../ActivityAlertViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 		863C053D1E205E1A006ECEE7 /* berrysigner */ = {
 			isa = PBXGroup;
 			children = (
+				86DD86751E2DB875002362FD /* pencil.png */,
 				864AE5721E212D15008C1C86 /* berrysigner.entitlements */,
 				863C054A1E205E1A006ECEE7 /* Info.plist */,
 				863C053E1E205E1A006ECEE7 /* AppDelegate.swift */,
@@ -185,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86DD86761E2DB875002362FD /* pencil.png in Resources */,
 				863C05491E205E1A006ECEE7 /* LaunchScreen.storyboard in Resources */,
 				863C05461E205E1A006ECEE7 /* Assets.xcassets in Resources */,
 				863C05441E205E1A006ECEE7 /* Main.storyboard in Resources */,
