@@ -14,17 +14,22 @@ class PageViewController: UIViewController {
     var pageImage: ProjectPageImage!
     
     var lastPoint = CGPoint.zero
-    var red: CGFloat = 0.0
-    var green: CGFloat = 0.0
-    var blue: CGFloat = 0.0
+    var strokeColor: CGColor = UIColor.black.cgColor
     var brushWidth: CGFloat = 3.0
     var opacity: CGFloat = 1.0
     var swiped = false
     
+    private var imageStatus: ImageStatusController?
+    
     @IBOutlet weak var imageView : UIImageView!
+    @IBOutlet weak var undoButton: UIBarButtonItem!
+    @IBOutlet weak var redoButton: UIBarButtonItem!
+    @IBOutlet weak var pencilButton: UIBarButtonItem!
+    @IBOutlet weak var eraserButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageStatus = ImageStatusController()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,8 +56,8 @@ class PageViewController: UIViewController {
         self.pageImage?.open(completionHandler: { (success) in
             self.imageView.image = self.pageImage.image
         })
-        
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         swiped = false
@@ -64,6 +69,10 @@ class PageViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.pageImage.image = self.imageView.image
         self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+        
+        self.imageStatus?.save(image: self.pageImage.image!)
+        self.redoButton.isEnabled = (self.imageStatus?.isRedoAvailable)!
+        self.undoButton.isEnabled = (self.imageStatus?.isUndoAvailable)!
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,22 +88,54 @@ class PageViewController: UIViewController {
         
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0)
         let context = UIGraphicsGetCurrentContext()
+        context?.setAllowsAntialiasing(true)
+        context?.setShouldAntialias(true)
+        context?.setLineCap(CGLineCap.round)
+        context?.setLineJoin(CGLineJoin.round)
+
         imageView.image?.draw(in : CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-        
+
         context?.move(to: fromPoint)
         context?.addLine(to: toPoint)
         
         context?.setLineCap(CGLineCap.round)
-        context?.setLineWidth(brushWidth)
-        context?.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+        context?.setLineWidth(self.brushWidth)
+        context?.setStrokeColor(self.strokeColor)
         context?.setBlendMode(CGBlendMode.normal)
         
         context?.strokePath()
         
-        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        imageView.alpha = opacity
+        self.imageView.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+    }
+    
+    @IBAction func undo(_ sender: Any) {
+        self.imageView.image = self.imageStatus?.undo()
+        self.pageImage.image = self.imageView.image
+        self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+        self.redoButton.isEnabled = (self.imageStatus?.isRedoAvailable)!
+        self.undoButton.isEnabled = (self.imageStatus?.isUndoAvailable)!
+    }
+    @IBAction func redo(_ sender: Any) {
+        self.imageView.image = self.imageStatus?.redo()
+        self.pageImage.image = self.imageView.image
+        self.pageImage.updateChangeCount(UIDocumentChangeKind.done)
+        self.redoButton.isEnabled = (self.imageStatus?.isRedoAvailable)!
+        self.undoButton.isEnabled = (self.imageStatus?.isUndoAvailable)!
+    }
+    @IBAction func switchToPencil(_ sender: Any) {
+        self.brushWidth = 3.0
+        self.strokeColor = UIColor.black.cgColor
+        self.pencilButton.isEnabled = false
+        self.eraserButton.isEnabled = true
+    }
+    
+    @IBAction func switchToEraser(_ sender: Any) {
+        self.brushWidth = 12.0
+        self.strokeColor = UIColor.white.cgColor
+        self.pencilButton.isEnabled = true
+        self.eraserButton.isEnabled = false
     }
     
     @IBAction func editName(_ sender: Any) {

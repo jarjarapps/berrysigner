@@ -16,9 +16,11 @@
 		864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5841E22A852008C1C86 /* ProjectPage.swift */; };
 		864AE5891E22A9B3008C1C86 /* ProjectPageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */; };
 		86629A4E1E29B26000FD1C71 /* ProjectPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86629A4D1E29B26000FD1C71 /* ProjectPageData.swift */; };
+		869CEB7A1E2BE3D20013E421 /* ImageStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CEB791E2BE3D20013E421 /* ImageStatusController.swift */; };
 		86C067471E2716890068BD2A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C067461E2716890068BD2A /* PageViewController.swift */; };
 		86CDE9A31E286D8000A2830D /* ProjectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CDE9A21E286D8000A2830D /* ProjectData.swift */; };
 		86CFEC301E2711900072262E /* ProjectDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */; };
+		86DD86761E2DB875002362FD /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 86DD86751E2DB875002362FD /* pencil.png */; };
 		86F129B31E2AA32500387FCB /* ActivityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F129B11E2AA32500387FCB /* ActivityAlertViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +37,11 @@
 		864AE5841E22A852008C1C86 /* ProjectPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPage.swift; sourceTree = "<group>"; };
 		864AE5881E22A9B3008C1C86 /* ProjectPageImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPageImage.swift; sourceTree = "<group>"; };
 		86629A4D1E29B26000FD1C71 /* ProjectPageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPageData.swift; sourceTree = "<group>"; };
+		869CEB791E2BE3D20013E421 /* ImageStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStatusController.swift; sourceTree = "<group>"; };
 		86C067461E2716890068BD2A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		86CDE9A21E286D8000A2830D /* ProjectData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectData.swift; sourceTree = "<group>"; };
 		86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsTableViewController.swift; sourceTree = "<group>"; };
+		86DD86751E2DB875002362FD /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		86F129B11E2AA32500387FCB /* ActivityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityAlertViewController.swift; path = ../ActivityAlertViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +76,7 @@
 		863C053D1E205E1A006ECEE7 /* berrysigner */ = {
 			isa = PBXGroup;
 			children = (
+				86DD86751E2DB875002362FD /* pencil.png */,
 				864AE5721E212D15008C1C86 /* berrysigner.entitlements */,
 				863C054A1E205E1A006ECEE7 /* Info.plist */,
 				863C053E1E205E1A006ECEE7 /* AppDelegate.swift */,
@@ -98,6 +103,7 @@
 				86CFEC2F1E2711900072262E /* ProjectDetailsTableViewController.swift */,
 				864AE5761E21B922008C1C86 /* ProjectsTableViewController.swift */,
 				86C067461E2716890068BD2A /* PageViewController.swift */,
+				869CEB791E2BE3D20013E421 /* ImageStatusController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86DD86761E2DB875002362FD /* pencil.png in Resources */,
 				863C05491E205E1A006ECEE7 /* LaunchScreen.storyboard in Resources */,
 				863C05461E205E1A006ECEE7 /* Assets.xcassets in Resources */,
 				863C05441E205E1A006ECEE7 /* Main.storyboard in Resources */,
@@ -196,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				863C053F1E205E1A006ECEE7 /* AppDelegate.swift in Sources */,
+				869CEB7A1E2BE3D20013E421 /* ImageStatusController.swift in Sources */,
 				86C067471E2716890068BD2A /* PageViewController.swift in Sources */,
 				864AE5851E22A852008C1C86 /* ProjectPage.swift in Sources */,
 				864AE5811E21C2FE008C1C86 /* Project.swift in Sources */,

@@ -115,7 +115,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
+                        <barButtonItem enabled="NO" systemItem="undo" id="Q6B-Cy-eiN">
+                            <connections>
+                                <action selector="undo:" destination="EIt-aj-DQZ" id="hKP-nY-Kq7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem enabled="NO" systemItem="redo" id="as8-4y-wBI">
+                            <connections>
+                                <action selector="redo:" destination="EIt-aj-DQZ" id="3ak-l0-5od"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="MyF-0b-xVa"/>
+                        <barButtonItem enabled="NO" title="Pencil" id="ETE-Mu-UdR">
+                            <connections>
+                                <action selector="switchToPencil:" destination="EIt-aj-DQZ" id="3GO-uz-ciw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Eraser" id="HYT-nq-Ilp">
+                            <connections>
+                                <action selector="switchToEraser:" destination="EIt-aj-DQZ" id="pjA-tT-tJz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="M9q-07-RjJ"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="UDX-ih-47Y"/>
                         <barButtonItem systemItem="action" id="acY-tv-dL4"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="WOF-sW-3VB">
@@ -126,7 +148,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="eraserButton" destination="HYT-nq-Ilp" id="Hu6-Lr-Xqo"/>
                         <outlet property="imageView" destination="m5a-g0-EuU" id="hvc-NS-26H"/>
+                        <outlet property="pencilButton" destination="ETE-Mu-UdR" id="d1u-tt-cua"/>
+                        <outlet property="redoButton" destination="as8-4y-wBI" id="TBa-PZ-hEs"/>
+                        <outlet property="undoButton" destination="Q6B-Cy-eiN" id="h0K-Y6-Vfe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22O-tz-hAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
